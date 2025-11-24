@@ -1,0 +1,54 @@
+for aws commands
+sudo apt update
+sudo apt-get install docker.io
+sudo apt install git
+sudo apt install nano 
+ git clone https://github.com/sushmitha579/maven-web-sample.git
+if repo is in main
+ls
+cd maven-web-sample/
+
+nano Dockerfile
+FROM tomcat:9-jdk11
+COPY target/*.war /usr/tomcat/webapps
+
+
+to build docker image
+sudo docker build -t mavenwebproject .
+
+to run container
+sudo docker run -d -p 9091:8081 mavenwebproject
+
+
+
+
+pipeline {
+    agent any
+    tools{
+        maven 'Maven-3.9'
+    }
+    stages {
+        stage('git repo & clean') {
+            steps {
+                bat "rmdir  /s /q maven-java-sample"
+                bat "git clone https://github.com/sushmitha579/maven-java-sample.git"
+                bat "mvn clean -f maven-java-sample"
+            }
+        }
+        stage('install') {
+            steps {
+                bat "mvn install -f maven-java-sample"
+            }
+        }
+        stage('test') {
+            steps {
+                bat "mvn test -f maven-java-sample"
+            }
+        }
+        stage('package') {
+            steps {
+                bat "mvn package -f maven-java-sample"
+            }
+        }
+    }
+}
