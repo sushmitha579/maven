@@ -1,0 +1,92 @@
+to start minikube using hypervisor docker the command is 
+minikube start --driver=docker
+
+to verify status 
+minikube status
+
+to interact with kubernates clusters  use kubectl
+to intall that the command is minikube kubectl -- get pods -A
+
+to verify the installation the command is 
+kubectl version --client
+
+for minikube version
+minikube version
+
+to check the minikube logs
+ minikube logs
+
+to update minikube 
+minikube update-check=>to display the current version and latest version
+minikube update
+
+
+minikube automation steps
+ 
+to start minikube cluster
+minikube start
+
+to create an application in kubernates
+kubectl create deployment mynginx --image=nginx
+
+if already created then
+kubectl set image deployement/mynginx nginx=nginx:latest
+
+ to verify deployment using 
+kubectl get deployments
+
+to get pods
+kubectl get pods
+ to describe pods
+kubectl describe pods
+
+expose deployment as  a service
+kubectl expose deployment mynginx --type=NodePort --port=80 --target-port=80
+
+to scale the deployment 
+kubectl scale deployment mynginx --replicas=4
+
+to get deployed service 
+kubectl get services mynginx
+
+access the nginx app
+kubectl port-forward svc/mynginx 8081:80
+if error use this option
+to start tunnel 
+minikube tunnel
+ to retrieve the service url
+minikube service mynginx --url
+
+to open the minikube dashboard
+minikube dashboard
+
+to delete the nginx deployment
+kubectl delete deployement mynginx
+kubectl delete service mynginx
+
+to stop minikube 
+stop minikube
+
+
+to pull the nagios docker image
+docker pull jasonrivers/nagios:latest
+
+to run nagios
+docker run --name nagiosdemo -p 8888:80 jasonrivers/nagios:latest
+
+ to stop nagios
+ docker stop nagiosdemo
+
+to delete nagios
+ docker delete nagiosdemo
+
+to delete the conatainer
+docker rm nagiosdemo
+
+list images
+docker images
+ to delete images
+ docker rmi jasonrivers/nagios :latest
+
+to delete the minikube cluster
+minikube delete
