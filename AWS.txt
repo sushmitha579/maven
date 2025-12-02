@@ -54,6 +54,13 @@ pipeline {
                 bat "mvn package -f maven-java-sample"
             }
         }
+stage('Deploy to Tomcat') {
+    steps {
+        deploy adapters: [tomcat9(credentialsId: 'tomcat-cred', url: 'http://localhost:8080')], war: 'maven-web-sample/target/*.war'
     }
 }
+
+    }
+}
+
 
