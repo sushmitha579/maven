@@ -1,0 +1,62 @@
+docker cli commands-->
+docker version 
+for checking version
+
+docker ps 
+for listing running containers
+
+1 docker pull redis
+to pull the redis image
+
+2 docker run --name my-redis -d redis 
+to run a redis container 
+
+docker images
+to know about the images
+
+3 docker ps
+to check running containers
+
+4 docker  exec -it my-redis redis-cli
+ to access redis
+
+5 docker stop my-redis
+to stop the redis container
+ but stop the container not delete it
+
+6 docker start my-redis
+to restart the redis container
+
+7 docker rm my-redis
+to remove the redis conatainer
+
+8 docker rmi redis
+to remove redis image
+
+
+inside Dockerfile
+FROM redis-latest
+CMD["redis-server"]
+
+1 docker build -t redisnew .
+builds a docker image using the docker file with a name redisnew
+
+2 docker run --name myredisnew -d redisnew 
+
+3 docker ps
+
+4 docker stop myredisnew
+
+5 docker login
+ 6 docker ps -a 
+shows all container including the stopped one
+
+7  docker commit 0e993d2009a1 budarajumadhurika/redis1
+
+8 docker images
+
+9 docker push budarajumadhurika/redis1
+uploads image into docker hub so others can download it 
+
+docker tag redisnew docker.io/sushmitha1/redis:latest
+docker push docker.io/sushmitah277/redis:latest
